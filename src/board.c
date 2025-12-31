@@ -7,14 +7,14 @@
 #define WHITE_PAWN_INIT 0xFF00ULL
 #define BLACK_PAWN_INIT 0x00FF000000000000ULL
 
-#define WHITE_ROOK_INIT 0X81ULL
-#define BLACK_ROOK_INIT 0X8100000000000000ULL
+#define WHITE_ROOK_INIT 0x81ULL
+#define BLACK_ROOK_INIT 0x8100000000000000ULL
 
-#define WHITE_KNIGHT_INIT 0X42ULL
-#define BLACK_KNIGHT_INIT 0X4200000000000000ULL
+#define WHITE_KNIGHT_INIT 0x42ULL
+#define BLACK_KNIGHT_INIT 0x4200000000000000ULL
 
-#define WHITE_BISHOP_INIT 0X24ULL
-#define BLACK_BISHOP_INIT 0X2400000000000000ULL
+#define WHITE_BISHOP_INIT 0x24ULL
+#define BLACK_BISHOP_INIT 0x2400000000000000ULL
 
 #define WHITE_QUEEN_INIT 0x10ULL
 #define BLACK_QUEEN_INIT 0x1000000000000000ULL
@@ -58,9 +58,7 @@ Board init_Board(){
     board.occupied[BLACK] = board.pawns[BLACK] | board.rooks[BLACK] | board.knights[BLACK] | board.bishops[BLACK] | board.queens[BLACK] | board.kings[BLACK];
     board.occupied[NONE] = board.occupied[WHITE] | board.occupied[BLACK];
 
-    board.empty[WHITE] = ~board.occupied[WHITE];
-    board.empty[BLACK] = ~board.occupied[BLACK];
-    board.empty[NONE] = board.empty[WHITE] & board.empty[BLACK];
+    board.empty = ~(board.occupied[WHITE] | board.occupied[BLACK]);
 
     return board;
 }

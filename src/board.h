@@ -15,11 +15,11 @@
  * undo move function
  */
 
-enum {WHITE, BLACK, NONE};                                  // side enum
-enum {fA, fB, fC, fD, fE, fF, fG, fH, fNONE};                      // files enum
-enum {r1, r2, r3, r4, r5, r6, r7, r8, rNONE};                      // ranks enum
-enum {wP, wK, wB, wR, wQ, bP, bK, bB, bR, bQ,};             // pieces enum
-enum {wKCastle = 1, wQCastle = 2, bKCastle = 4, bQCastle = 8};  // castle rights enum
+enum {WHITE, BLACK, NONE};                                          // side enum
+enum {fA, fB, fC, fD, fE, fF, fG, fH, fNONE};                       // files enum
+enum {r1, r2, r3, r4, r5, r6, r7, r8, rNONE};                       // ranks enum
+enum {wP, wK, wB, wR, wQ, bP, bK, bB, bR, bQ,};                     // pieces enum
+enum {wKCastle = 1, wQCastle = 2, bKCastle = 4, bQCastle = 8};      // castle rights enum
 
 typedef struct
 {
@@ -33,7 +33,7 @@ typedef struct
 
     // auxiliary bitboards
     U64 occupied[3];
-    U64 empty[3];
+    U64 empty;
 
     U8 castleRights;
     U8 active;                      // side to move

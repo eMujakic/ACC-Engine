@@ -15,4 +15,7 @@ void run_tests()
     printf("\nBitboard Tests Completed!\n");
 
     printf("-----------------------------------------------\n");
+    printf("\nStarting Fen Tests...\n");
+    test_fen();
+    printf("\nFen Tests Completed!\n");
 }

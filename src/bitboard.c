@@ -8,7 +8,7 @@
 /* ================================================================================
  * bitboards use big-endian representation
  * for example, in the byte:
- * 0  0  0  0  1  0  0  0
+ * 1  0  0  1  1  0  1  1
  * ^                    ^
  * a1                   h1
  * ================================================================================
@@ -24,12 +24,12 @@ void clear_bit(U64 *bitboard, int file, int rank)
     *bitboard &= ~(1ULL << ((7 - file) + rank*8));
 }
 
-int peek_bit(U64 const *bitboard, int file, int rank)
+int peek_bit(const U64 *bitboard, int file, int rank)
 {
     return (*bitboard & (1ULL << ((7 - file) + rank*8))) ? 1 : 0;
 }
 
-void print_bitboard(U64 const *bitboard) {
+void print_bitboard(const U64 *bitboard) {
     printf("\nPrinting Bitboard %llu...\n", *bitboard);
 
     for (int rank = r8; rank >= r1; rank--) {

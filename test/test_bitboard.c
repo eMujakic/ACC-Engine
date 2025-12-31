@@ -9,7 +9,7 @@
 void test_bitboard(){
     U64 bitboard = 0;
 
-    // ========================== GET, SET, & PEEK TESTS ====================================================
+    // ========================== GET, SET, CLEAR, & PEEK TESTS ====================================================
     set_bit(&bitboard, fA, r1);
     assert(bitboard == 0x80ULL);
     assert(peek_bit(&bitboard, fA, r1) == 1);

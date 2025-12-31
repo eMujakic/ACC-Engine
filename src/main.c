@@ -3,7 +3,6 @@
 //
 
 #include <stdio.h>
-
 #include "defs.h"
 #include <assert.h>
 #include "bitboard.h"
@@ -29,13 +28,8 @@ int main()
 {
 
 #ifdef  DEBUG
-    Board board = init_Board();
-    print_bitboard(&board.empty[NONE]);
-
-    // run_tests();
+    run_tests();
 #endif
-
-
 
     return 0;
 }

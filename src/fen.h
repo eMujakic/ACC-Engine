@@ -4,9 +4,12 @@
 
 #ifndef ACC_ENGINE_FEN_H
 #define ACC_ENGINE_FEN_H
+#include "board.h"
 
 Board parse_fen(const char* fen);
 
-char* board_to_fen(Board board);
+char* board_to_fen(const Board* board);
+
+char* castling_rights_to_fen(U8 rights);
 
 #endif //ACC_ENGINE_FEN_H
