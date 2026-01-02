@@ -8,14 +8,13 @@
 
 void run_tests()
 {
-    printf("=================Running Tests=================\n");
+    printf("Running Tests...\n");
 
-    printf("\nStarting Bitboard Tests...\n");
+    printf("\n========================Bitboard Tests========================\n");
     test_bitboard();
-    printf("\nBitboard Tests Completed!\n");
+    printf("\nBitboard Tests Completed!\n\n");
 
-    printf("-----------------------------------------------\n");
-    printf("\nStarting Fen Tests...\n");
+    printf("========================Fen Tests========================\n\n");
     test_fen();
     printf("\nFen Tests Completed!\n");
 }

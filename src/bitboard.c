@@ -16,12 +16,18 @@
 
 void set_bit(U64* bitboard, int file, int rank)
 {
-    *bitboard |= 1ULL << ((7 - file) + rank*8);
+    if (file >= fA && file <= fH && rank >= r1 && rank <= r8)
+    {
+        *bitboard |= 1ULL << ((7 - file) + rank*8);
+    }
 }
 
 void clear_bit(U64 *bitboard, int file, int rank)
 {
-    *bitboard &= ~(1ULL << ((7 - file) + rank*8));
+    if (file >= fA && file <= fH && rank >= r1 && rank <= r8)
+    {
+        *bitboard &= ~(1ULL << ((7 - file) + rank*8));
+    }
 }
 
 int peek_bit(const U64 *bitboard, int file, int rank)
@@ -30,7 +36,7 @@ int peek_bit(const U64 *bitboard, int file, int rank)
 }
 
 void print_bitboard(const U64 *bitboard) {
-    printf("\nPrinting Bitboard %llu...\n", *bitboard);
+    printf("\nPrinting Bitboard 0x%llx...\n", *bitboard);
 
     for (int rank = r8; rank >= r1; rank--) {
         printf("%d | ", rank + 1);

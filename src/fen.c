@@ -93,8 +93,9 @@ char* board_to_fen(const Board* board)
     fen[index++] = ' ';
 
     char* strCastleRights = castling_rights_to_fen(board->castleRights);
-    strcat(fen, strCastleRights);
-    index += strlen(strCastleRights);
+    int len = strlen(strCastleRights);
+    memcpy(fen + index, strCastleRights, len);
+    index += len;
     free(strCastleRights);
 
     strcpy(&fen[index], " - "); // en passant placeholder

@@ -44,6 +44,6 @@ typedef struct
 
 Board init_Board();
 
-void print_board(Board board);
+void print_board(const Board *board);
 
 #endif //ACC_ENGINE_BOARD_H

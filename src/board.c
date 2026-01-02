@@ -4,6 +4,13 @@
 
 #include "board.h"
 
+#include <ctype.h>
+#include <stdio.h>
+
+#include "fen.h"
+
+//Bitboard values for the initial position of each piece type
+
 #define WHITE_PAWN_INIT 0xFF00ULL
 #define BLACK_PAWN_INIT 0x00FF000000000000ULL
 
@@ -22,7 +29,7 @@
 #define WHITE_KING_INIT 0x08ULL
 #define BLACK_KING_INIT 0x0800000000000000ULL
 
-Board init_Board(){
+Board init_Board(){     //Initializes board to starting position
     Board board;
 
     board.castleRights = wKCastle | wQCastle | bKCastle | bQCastle;
@@ -61,4 +68,43 @@ Board init_Board(){
     board.empty = ~(board.occupied[WHITE] | board.occupied[BLACK]);
 
     return board;
+}
+
+void print_board(const Board* board)
+{
+    char* fenString = board_to_fen(board);
+    int index = 0;
+
+    for (int rank = r8; rank >= r1; rank--)
+    {
+        printf("\n%d |  ", rank + 1);
+
+        for (int file = fA; file <= fNONE;)
+        {
+            if (fenString[index] == '\0') break;
+
+            if (fenString[index] == '/')
+            {
+                index++;
+                break;
+            }
+            if (isdigit(fenString[index]))
+            {
+                int num = fenString[index] - '0';
+                for (int i = 0; i < num; i++)
+                {
+                    printf(" .  ");
+                    file++;
+                }
+                index++;
+            }
+            else
+            {
+                printf(" %c  ", fenString[index++]);
+                file++;
+            }
+        }
+    }
+    printf("\n  ----------------------------------\n");
+    printf("      a   b   c   d   e   f   g   h\n");
 }
