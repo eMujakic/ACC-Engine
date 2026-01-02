@@ -14,7 +14,8 @@
 void test_fen()
 {
     //======================================BOARD-TO-FEN TESTS===========================================
-    Board board = init_Board();
+    Board board;
+    init_board(&board);
 
     // Test Case 1: Init Board
     char* fenString = board_to_fen(&board);
@@ -47,7 +48,7 @@ void test_fen()
     printf("\n");
 
     // Test Case 3: Almost empty board (only kings and pawns)
-    board = init_Board();
+    init_board(&board);
     // Clear all pieces except kings and pawns
     board.knights[WHITE] = 0; board.knights[BLACK] = 0; board.knights[NONE] = 0;
     board.bishops[WHITE] = 0; board.bishops[BLACK] = 0; board.bishops[NONE] = 0;

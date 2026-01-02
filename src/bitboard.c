@@ -14,7 +14,7 @@
  * ================================================================================
  */
 
-void set_bit(U64* bitboard, int file, int rank)
+void set_bit(U64 *bitboard, int file, int rank)
 {
     if (file >= fA && file <= fH && rank >= r1 && rank <= r8)
     {

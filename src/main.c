@@ -10,16 +10,15 @@
 #include "../test/test.h"
 
 /* TODO:
- * board representation
- * lookup table translation init
- * board history struct
- * piecelists
+ * Move Representation
+ * (generated) Move List Management
+ * Move Execution & Undo
+ * Attack and Check Detection (Bitboard Raycasting)
+ * Move-To-String Function
  * UCI protocol
- * FEN parsing and generation
+ * FEN parsing
  * zobrist key
  * perft??
- * linkedlist impl
- * test env
  */
 
 #define DEBUG

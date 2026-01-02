@@ -17,4 +17,5 @@ add_executable(ACC_Engine
         test/test_runner.c
         test/test.h
         test/test_fen.c
+        test/test_board.c
 )

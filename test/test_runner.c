@@ -17,4 +17,8 @@ void run_tests()
     printf("========================Fen Tests========================\n\n");
     test_fen();
     printf("\nFen Tests Completed!\n");
+
+    printf("========================Board Tests========================\n\n");
+    test_board();
+    printf("\nBoard Tests Completed!\n");
 }

@@ -42,8 +42,10 @@ typedef struct
     U8 material[3];
 } Board;
 
-Board init_Board();
+void init_board(Board *board);
 
 void print_board(const Board *board);
+
+void reset_board(Board *board);
 
 #endif //ACC_ENGINE_BOARD_H
