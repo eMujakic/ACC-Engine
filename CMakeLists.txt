@@ -18,4 +18,11 @@ add_executable(ACC_Engine
         test/test.h
         test/test_fen.c
         test/test_board.c
+        src/move.c
+        src/move.h
+        test/test_move.c
+        src/zobrist.c
+        src/zobrist.h
+        test/test_zobrist.c
+        src/init.c
 )

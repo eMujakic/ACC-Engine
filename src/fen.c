@@ -14,8 +14,8 @@
 
 #define FEN_LENGTH 100
 
-char* castling_rights_to_fen(U8 rights)         // Takes an 8-bit castlingRights integer, and returns the
-{                                               // corresponding fen substring for castling rights
+static char* castling_rights_to_fen(const U8 rights)         // Takes an 8-bit castlingRights integer, and returns the
+{                                                            // corresponding fen substring for castling rights
     char* stringRights = malloc(sizeof(char) * 5);
     int index = 0;
 
@@ -49,17 +49,17 @@ char* board_to_fen(const Board* board)
 
         for (int file = fA; file < fNONE; file++)
         {
-            if (peek_bit(&board->occupied[NONE], file, rank))
+            if (peek_bit(&board->occupied[BOTH], file, rank))
             {
                 int side = peek_bit(&board->occupied[WHITE], file, rank) ? WHITE : BLACK;
-                char piece = '0';
 
-                if (peek_bit(&board->rooks[side], file, rank)) piece = 'R';
-                else if (peek_bit(&board->knights[side], file, rank)) piece = 'N';
-                else if (peek_bit(&board->bishops[side], file, rank)) piece = 'B';
-                else if (peek_bit(&board->queens[side], file, rank)) piece = 'Q';
-                else if (peek_bit(&board->kings[side], file, rank)) piece = 'K';
-                else if (peek_bit(&board->pawns[side], file, rank)) piece = 'P';
+                char piece = get_piece_at(board, file, rank);
+                if      (piece == PAWN)     piece = 'p';
+                else if (piece == ROOK)     piece = 'r';
+                else if (piece == KNIGHT)   piece = 'n';
+                else if (piece == BISHOP)   piece = 'b';
+                else if (piece == QUEEN)    piece = 'q';
+                else if (piece == KING)     piece = 'k';
                 else
                 {
                     fprintf(stderr, "Unrecognized piece\n");
@@ -67,7 +67,7 @@ char* board_to_fen(const Board* board)
                     exit(EXIT_FAILURE);
                 }
 
-                if (side == BLACK) piece = tolower(piece);
+                if (side == WHITE) piece = toupper(piece);
 
                 if (emptyCount > 0)
                 {
@@ -101,7 +101,7 @@ char* board_to_fen(const Board* board)
     strcpy(&fen[index], " - "); // en passant placeholder
     index += 3;
 
-    index += snprintf(&fen[index], 10, "%d %lu", board->fiftyMove, board->moveCount);
+    index += snprintf(&fen[index], 10, "%d %lu", board->halfmoveClock, board->moveCount);
 
     fen[index] = '\0';
     return fen;     // MUST BE FREED!!

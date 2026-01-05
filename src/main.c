@@ -7,6 +7,7 @@
 #include <assert.h>
 #include "bitboard.h"
 #include "board.h"
+#include "zobrist.h"
 #include "../test/test.h"
 
 /* TODO:
@@ -25,7 +26,7 @@
 
 int main()
 {
-
+    zobrist_init();
 #ifdef  DEBUG
     run_tests();
 #endif

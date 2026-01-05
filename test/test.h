@@ -9,5 +9,7 @@ void run_tests();
 void test_bitboard();
 void test_board();
 void test_fen();
+void test_move();
+void test_zobrist();
 
 #endif //ACC_ENGINE_TEST_H

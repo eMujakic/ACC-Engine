@@ -10,6 +10,7 @@
 #include "../src/bitboard.h"
 #include "../src/board.h"
 #include "../src/fen.h"
+#include "../src/move.h"
 
 void test_fen()
 {
@@ -27,46 +28,34 @@ void test_fen()
     printf("\n");
 
     // Test Case 2: Move a2 to a3 (black to move, no castling rights)
-    clear_bit(&board.pawns[WHITE], fA, r2);
-    set_bit(&board.pawns[WHITE], fA, r3);
-    clear_bit(&board.pawns[NONE], fA, r2);
-    set_bit(&board.pawns[NONE], fA, r3);
-    clear_bit(&board.occupied[WHITE], fA, r2);
-    set_bit(&board.occupied[WHITE], fA, r3);
-    clear_bit(&board.occupied[NONE], fA, r2);
-    set_bit(&board.occupied[NONE], fA, r3);
 
-    board.active = BLACK;
-    board.castleRights = 0;
+    Move move = create_move(fA, r2, fA, r3, PAWN, 0);
+    perform_move(&board, &move);
 
     fenString = board_to_fen(&board);
     printf("Fen String for a2a3 board:%s\n", fenString);
-    expected = "rnbqkbnr/pppppppp/8/8/8/P7/1PPPPPPP/RNBQKBNR b - - 0 1";
+    expected = "rnbqkbnr/pppppppp/8/8/8/P7/1PPPPPPP/RNBQKBNR b KQkq - 0 1";
     assert(strcmp(fenString, expected) == 0);
     free(fenString);
     print_board(&board);
     printf("\n");
 
     // Test Case 3: Almost empty board (only kings and pawns)
-    init_board(&board);
-    // Clear all pieces except kings and pawns
-    board.knights[WHITE] = 0; board.knights[BLACK] = 0; board.knights[NONE] = 0;
-    board.bishops[WHITE] = 0; board.bishops[BLACK] = 0; board.bishops[NONE] = 0;
-    board.rooks[WHITE] = 0;   board.rooks[BLACK] = 0; board.rooks[NONE] = 0;
-    board.queens[WHITE] = 0;  board.queens[BLACK] = 0; board.queens[NONE] = 0;
-    // Update occupied boards
-    board.occupied[WHITE] = board.pawns[WHITE] | board.kings[WHITE];
-    board.occupied[BLACK] = board.pawns[BLACK] | board.kings[BLACK];
-    board.occupied[NONE] = board.occupied[WHITE] | board.occupied[BLACK];
+    clear_board(&board);
+    add_piece(&board, KING, BLACK, fE, r8);
+    add_piece(&board, KING, WHITE, fE, r1);
+
+    add_piece(&board, PAWN, BLACK, fA, r7);
+    add_piece(&board, PAWN, WHITE, fA, r2);
 
     board.active = WHITE;
     board.castleRights = wQCastle | bKCastle;
-    board.fiftyMove = 0;
+    board.halfmoveClock = 0;
     board.moveCount = 5;
 
     fenString = board_to_fen(&board);
     printf("Fen String minimal board:%s", fenString);
-    expected = "4k3/pppppppp/8/8/8/8/PPPPPPPP/4K3 w Qk - 0 5";
+    expected = "4k3/p7/8/8/8/8/P7/4K3 w Qk - 0 5";
     assert(strcmp(fenString, expected) == 0);
     free(fenString);
     print_board(&board);

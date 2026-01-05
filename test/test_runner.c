@@ -10,6 +10,10 @@ void run_tests()
 {
     printf("Running Tests...\n");
 
+    printf("========================Zobrist Tests========================\n\n");
+    test_zobrist();
+    printf("Zobrist Tests Completed!\n");
+
     printf("\n========================Bitboard Tests========================\n");
     test_bitboard();
     printf("\nBitboard Tests Completed!\n\n");
@@ -21,4 +25,8 @@ void run_tests()
     printf("========================Board Tests========================\n\n");
     test_board();
     printf("\nBoard Tests Completed!\n");
+
+    printf("========================Move Tests========================\n\n");
+    test_move();
+    printf("\nMove Tests Completed!\n");
 }
